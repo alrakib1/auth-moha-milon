@@ -20,14 +20,18 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-     {
-      user ? '' : <><li>
-      <NavLink to="/login">Log in</NavLink>
-    </li>
-    <li>
-      <NavLink to="/register">Register</NavLink>
-    </li> </>
-     }
+      {user ? (
+        ""
+      ) : (
+        <>
+          <li>
+            <NavLink to="/login">Log in</NavLink>
+          </li>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>{" "}
+        </>
+      )}
       {user && (
         <>
           <li>
@@ -75,15 +79,15 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            {" "}
-            <span>{user.email}</span>
-            <a onClick={handleLogOut} className="btn btn-sm">
-              Sign out
-            </a>
+            <div className="flex flex-row gap-4 justify-center items-center">
+              <span className="hidden md:block">{user.email}</span>
+              <a onClick={handleLogOut} className="btn btn-sm">
+                Sign out
+              </a>
+            </div>
           </>
         ) : (
           <Link to="/login">
-            {" "}
             <button className="btn btn-sm">Log in</button>
           </Link>
         )}
